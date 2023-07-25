@@ -6,25 +6,73 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ 
+  <div class="container">
+    <a class="navbar-brand" href="/"><span>Bookers</span></a>
+    
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+  </button>
+  
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li>
+            <a class="nav-link text-light" href="/users/121892">
+              <i class="fas fa-home" aria-hidden="true"></i> Home
+</a>          </li>
+          <li>
+            <a class="nav-link text-light" href="/users">
+              <i class="fas fa-users" aria-hidden="true"></i> Users
+</a>          </li>
+          <li>
+            <a class="nav-link text-light" href="/books">
+              <i class="fas fa-book-open" aria-hidden="true"></i> Books
+</a>          </li>
+          <li>
+            <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
+              <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Log out
+</a>          </li>
+        </ul>
+      </div>
+  </div> 
+    
+  </nav>
+  </header>
+  
     <header>
     <% if user_signed_in? %>
+     <li>
+    <%= link_to '投稿フォーム', new_book_path %>
+  </li>
       <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       </li>
     <% else %>
       <li>
-        <%= link_to "新規登録", new_user_registration_path %>
+        <%= link_to "Signup", new_user_registration_path %>
       </li>
       <li>
-        <%= link_to "ログイン", new_user_session_path %>
+        <%= link_to "Login", new_user_session_path %>
       </li>
     <% end %>
   </header>
     <%= yield %>
+<footer>
+    <div class="container mt-5">
+  	<div class="row">
+    	<div class="mx-auto">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+  </footer>
   </body>
 </html>
