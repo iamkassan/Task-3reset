@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   def index
     @book = Book.new
+    @books = Book.all
   end
    # 投稿データの保存
   def create
@@ -11,6 +12,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    
   end
 
   def edit
@@ -20,6 +22,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :image, :body)
+    params.require(:book).permit(:title, :body, :profile_image)
   end
 end
