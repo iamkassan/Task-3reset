@@ -1,10 +1,18 @@
-<h2>User info</h2>
 
-<% if book.profile_image.attached? %>
-    <%= profile_image_tag book.image, size: "200x200" %>
-  <% else %>
-    <%= profile_image_tag 'no_image', size: "200x200" %>
-  <% end %>
+<div class="container px-5 px-sm-0">
+<div class="row">
+ <div class="col-md-3">
+<h2>User info</h2>
+  <% if @book.profile_image.attached? %>
+  <%= image_tag user.profile_image, size: "100x100" %>
+
+ <% else %>
+    <%= image_tag 'no_image', size: "100x100" %>
+    <% end %>
+  <h5>name</h5>
+  <%= @book.user.name %>
+  <h5>introduction</h5>
+  <%= @book.user.introduction %>
   
 <%= form_with model: Book do |f| %>
 <h2>New book</h2>
@@ -12,8 +20,38 @@
   <%= f.text_field :title  %>
   <h4>Opinion</h4>
   <%= f.text_field :body %>
+  <nav>
   <%= f.submit 'Create Book' %>
+  </nav>
   <% end %>
+  </div>
 
 
+
+
+
+<div class= "col-xs-9">
+  <h2>Book detail</h2>
+  <table>
+    <tr>
+      <td>
+        <%= link_to user_path(@book.user_id) do %>
+        <% if @book.profile_image.attached? %>
+
+    <%= image_tag book.profile_image, size: "100x100" %>
+  <% else %>
+    <%= image_tag 'no_image.jpg', size: "100x100" %>
+    <nav>
+     <%= link_to @book.user.name %> 
+    </nav>
+    <% end %>
+    <% end %>
+      </td>
+      <td><%= link_to @book.title %></td>
+      <td><%= @book.body %></td>
+    </tr>
+  </table>
+</div>
+</div>
+</div>
 
