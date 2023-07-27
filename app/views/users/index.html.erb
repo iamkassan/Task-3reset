@@ -14,11 +14,19 @@
 <tbody>
 <% @users.each do |user| %>
 <tr>
-<td><%= f.file_field :profile_image, accept: "image/*" %></td>
+ <td><% if @user.profile_image.attached? %>
+
+  <%= image_tag user.profile_image, size: "100x100" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "100x100" %>
+    </td>
 <td><%= user.name %></td>
 </tr>
 <% end %>
+
+<% end %>
 </tbody>
 </table>
+</div>
 </div>
 </div>
